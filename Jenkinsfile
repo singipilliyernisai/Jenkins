@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = "JENKINS-DOCKER-DEMO"
+       image_name = "jenkins-docker-demo"
     }
 
     stages {
@@ -14,14 +14,14 @@ pipeline {
         stage('docker building'){
             steps{
                 echo "Building docker image"
-                sh 'docker build -t $IMAGE_NAME'
+                sh 'docker build -t $image_name'
             }
         }
 
         stage('running the container') {
             steps {
                 echo "running the docker container"
-                sh 'docker run -d -p 8081:80 --name demo_container $IMAGE_Name'
+                sh 'docker run -d -p 8081:80 --name demo_container $image_name'
             }
         }
     }
