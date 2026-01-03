@@ -7,13 +7,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Code checked out'
+                echo "Code checked out"
                 git branch: 'main', url:'https://github.com/singipilliyernisai/Jenkins.git'
             }
         }
         stage('show workspaces'){
             steps{
-                echo"Listing workspaces"
+                echo "Listing workspaces"
                 sh 'ls -l'
             }
         }
@@ -21,16 +21,16 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Build application:$APP_NAME"
-                sh 'echobuild completed successfull'
+                sh 'echo build completed successfull'
             }
         }
     }
     post{
         success{
-            echo"Pipeline completed successfully"
+            echo "Pipeline completed successfully"
         }
         failure{
-            echo"Pipeline failed"
+            echo "Pipeline failed"
         }
     }
 
