@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        image_name = "JENKINS-DOCKER-DEMO"
+        IMAGE_NAME = "JENKINS-DOCKER-DEMO"
     }
 
     stages {
