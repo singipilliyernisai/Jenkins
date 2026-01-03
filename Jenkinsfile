@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        APP_NAME = "Pipeline- Practice"
+        image_name = "JENKINS-DOCKER-DEMO"
     }
 
     stages {
@@ -11,26 +11,26 @@ pipeline {
                 git branch: 'main', url:'https://github.com/singipilliyernisai/Jenkins.git'
             }
         }
-        stage('show workspaces'){
+        stage('docker building'){
             steps{
-                echo "Listing workspaces"
-                sh 'ls -l'
+                echo "Building docker image"
+                sh 'docker build -t $IMAGE_NAME'
             }
         }
 
-        stage('Build') {
+        stage('running the container') {
             steps {
-                echo "Build application:$APP_NAME"
-                sh 'echo build completed successfull'
+                echo "running the docker container"
+                sh 'docker run -d -p 8081:80 --name demo_container $IMAGE_Name'
             }
         }
     }
     post{
         success{
-            echo "Pipeline completed successfully"
+            echo "docker container completed"
         }
         failure{
-            echo "Pipeline failed"
+            echo "not completed docker container"
         }
     }
 
