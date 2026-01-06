@@ -23,7 +23,7 @@ pipeline {
                 echo "running the docker container"
                sh '''
         docker rm -f demo_container || true
-        docker run -d -p 8081:80 --name demo_container jenkins-docker-demo1
+        docker run -d -p 8081:80 --name demo_container jenkins-docker-demo
         '''
             }
         }
