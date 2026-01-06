@@ -21,9 +21,9 @@ pipeline {
         stage('running the container') {
             steps {
                 echo "running the docker container"
-                sh '''
+               sh '''
         docker rm -f demo_container || true
-        docker run -d -p 8081:80 --name demo_container jenkins-docker-demo
+        docker run -d -p 8081:80 --name demo_container jenkins-docker-demo1
         '''
             }
         }
