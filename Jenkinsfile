@@ -21,7 +21,10 @@ pipeline {
         stage('running the container') {
             steps {
                 echo "running the docker container"
-                sh 'docker run -d -p 8081:80 --name demo_container $image_name'
+                sh '''
+        docker rm -f demo_container || true
+        docker run -d -p 8081:80 --name demo_container jenkins-docker-demo
+        '''
             }
         }
     }
