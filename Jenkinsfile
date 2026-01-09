@@ -1,10 +1,10 @@
 pipeline {
     agent any
     environment {
-      DOCKERHUB_USERNAME = yernisai
+      DOCKERHUB_USERNAME = "yernisai"
         IMAGE_NAME = "jenkins-nginx-demo"
         IMAGE_TAG = "latest"
- 
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-      
+    }
     }
     post{
         success{
