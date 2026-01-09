@@ -1,9 +1,10 @@
 pipeline {
     agent any
     environment {
-       image_name = "jenkins-docker-demo"
-    }
-
+      DOCKERHUB_USERNAME = yernisai
+        IMAGE_NAME = "jenkins-nginx-demo"
+        IMAGE_TAG = "latest"
+ 
     stages {
         stage('Checkout') {
             steps {
@@ -11,22 +12,17 @@ pipeline {
                 git branch: 'main', url:'https://github.com/singipilliyernisai/Jenkins.git'
             }
         }
-        stage('docker building'){
+        stage('k8s building'){
             steps{
-                echo "Building docker image"
-                sh 'docker build -t $image_name .'
+                echo "Building k8s image"
+                sh '''
+                kubectl apply -f deploy.yaml
+                kubectl apply -f service.yaml
+                '''
             }
         }
 
-        stage('running the container') {
-            steps {
-                echo "running the docker container"
-               sh '''
-        docker rm -f demo_container || true
-        docker run -d -p 8081:80 --name demo_container jenkins-docker-demo
-        '''
-            }
-        }
+      
     }
     post{
         success{
