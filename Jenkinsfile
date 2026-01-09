@@ -1,4 +1,4 @@
-pipeline {
+tpipeline {
     agent any
     environment {
       DOCKERHUB_USERNAME = "yernisai"
@@ -16,7 +16,7 @@ pipeline {
             steps{
                 echo "Building k8s image"
                 sh '''
-                kubectl apply -f k8s/deploy.yaml
+                kubectl apply -f k8s/deployment.yaml
                 kubectl apply -f k8s/service.yaml
                 '''
             }
