@@ -1,11 +1,19 @@
-apiVersion: apps/v1 kind: Deployment metadata:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: nginx-deployment
-spec: replicas: 2 selector:
+spec:
+  replicas: 1
+  selector:
     matchLabels:
-      app: nginx template:
+      app: nginx
+  template:
     metadata:
-      labels: app: nginx
+      labels:
+        app: nginx
     spec:
-      containers: - name: nginx
-          image: yernisai/jenkins-nginx-demo:latest ports:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
             - containerPort: 80
